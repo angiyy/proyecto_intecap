@@ -26,6 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
+DEBUG=os.getenv('DEBUG', 'False') == 'True'
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['*.onrender.com']
@@ -147,8 +148,9 @@ LOGOUT_URL = '/logout/'
 
 STATIC_URL = 'static/'
 
+
 if not DEBUG:
-    STATIC_ROOT= os.path.join(BASE_DIR)
+    STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
     SATATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
